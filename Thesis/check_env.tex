@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{verbatim}
+
+\newread\myfile
+\openin\myfile=main.tex % 把 main.tex 换成你的主文件名
+
+\newcounter{line}
+\setcounter{line}{0}
+
+\begin{document}
+\verbatiminput{draft.tex} % 会原样打印文件，方便你找 begin/end
+\end{document}
