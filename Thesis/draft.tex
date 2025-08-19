@@ -678,9 +678,7 @@ The dispersion parameter \(\alpha\) of the negative binomial distribution measur
 
 Table~\ref{tab:zinb_fit} summarizes the model fit statistics for the ZINB model in this dissertation. The pseudo-$R^2$ is 0.34, indicating a relatively modest fit, although the extremely small LLR p-value (3.59 × 10$^{-63}$) suggests that the model is highly statistically significant. This indicates that despite a limited fit, the model provides a strong distinction between structural zeros and medal counts.
 
-Furthermore, the AIC value of 610.24 suggests that this model strikes a good balance between fit and complexity, performing well among the alternative model specifications. The negative binomial dispersion parameter $\alpha$ is estimated at 0.21, confirming the presence of overdispersion, which means that the variance in the data exceeds what would be predicted by a Poisson distribution. Finally, the model uses the "nonrobust" covariance type, which may imply that standard error estimates could be biased, and caution should be exercised in applying the model's results directly in some contexts.
-
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \caption{ZINB model fit statistics}
 \label{tab:zinb_fit}
@@ -697,17 +695,11 @@ Covariance type & nonrobust \\
 \end{tabular}
 \end{table}
 
+Furthermore, the AIC value of 610.24 suggests that this model strikes a good balance between fit and complexity, performing well among the alternative model specifications. The negative binomial dispersion parameter $\alpha$ is estimated at 0.21, confirming the presence of overdispersion, which means that the variance in the data exceeds what would be predicted by a Poisson distribution. Finally, the model uses the "nonrobust" covariance type, which may imply that standard error estimates could be biased, and caution should be exercised in applying the model's results directly in some contexts.
+
+
 \subsection{Residual Distribution}
 \subsubsection{Distributional Features of Standardized Residuals}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.92\linewidth]{fig_resid_hist.png}
-  \caption{Standardized residuals—histogram and kernel density.
-  Notes: The orange curve is the kernel density (KDE); the green dashed curve is the
-  normal reference density calibrated by the sample mean and variance. Vertical
-  lines mark $r_i=0$ and $r_i=\pm2,\pm3$.}
-  \label{fig:resid_hist}
-\end{figure}
 
 Figure~\ref{fig:resid_hist} depicts the histogram and kernel density of the standardized
 residuals, $r_i=\{y_i-\widehat{\mathbb{E}}[Y_i]\}/\sqrt{\widehat{\mathrm{Var}}(Y_i)}$.
@@ -722,7 +714,25 @@ center and thicker in the right tail, signaling a deviation from symmetry and no
 This pattern is consistent with the highly concentrated nature of Olympic medals and the
 heterogeneity of headlined teams.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{fig_resid_hist.png}
+  \caption{Standardized residuals—histogram and kernel density.
+  Notes: The orange curve is the kernel density (KDE); the green dashed curve is the
+  normal reference density calibrated by the sample mean and variance. Vertical
+  lines mark $r_i=0$ and $r_i=\pm2,\pm3$.}
+  \label{fig:resid_hist}
+\end{figure}
+
 \subsubsection{Relationship Between Standardized Residuals and Fitted Values}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.92\linewidth]{fig_resid_vs_pred.png}
+  \caption{Standardized residuals versus fitted means (ZINB).
+  Notes: Points denote NOCs; horizontal lines mark $r_i=0$ and $r_i=\pm2,\pm3$; labels highlight the three countries with the largest residual rankings.}
+  \label{fig:resid_vs_pred}
+\end{figure}
 
 Figure~\ref{fig:resid_vs_pred} examines how standardized residuals vary with the 
 fitted means. In the mid-to-high fitted range ($\widehat{\mathbb{E}}[Y_i]>15$), 
@@ -741,28 +751,10 @@ Robustness checks will therefore incorporate covariates for rare successes
 measures, and interactions with $\log(\mathrm{Athletes})$), and, if needed, 
 hierarchical/random-effects extensions to target the low-fitted group.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.92\linewidth]{fig_resid_vs_pred.png}
-  \caption{Standardized residuals versus fitted means (ZINB).
-  Notes: Points denote NOCs; horizontal lines mark $r_i=0$ and $r_i=\pm2,\pm3$; labels highlight the three countries with the largest residual rankings.}
-  \label{fig:resid_vs_pred}
-\end{figure}
-
 \subsubsection{Predicted Medal Counts Against Key Covariates Under the ZINB Model}
 \label{subsubsec:fourpanels-rev}
-As shown in Panel~A of Figure~\ref{fig:four-panels-zinb}, when Population, HDI, and the number of participating athletes are held at their medians, the ceteris paribus curve with respect to $\log(\mathrm{GDP})$ is nearly flat. This accords with the count coefficient $b_{\log GDP}=-0.18$ (n.s.). By contrast, the inflation part yields $\gamma_{\log GDP}<0$ (significant), indicating that GDP mainly lowers the probability of a structural zero---an entry-margin effect rather than a scale effect.
 
-Panel~B of Figure~\ref{fig:four-panels-zinb} varies $\log(\mathrm{Population})$ while fixing the other covariates at their medians. The partial-effect curve rises only mildly, consistent with $c_{\log Pop}=0.20$ (n.s.), implying limited scale effects once participation is controlled for. The inflation estimate is positive and significant ($\gamma_{\log Pop}>0$), suggesting that, conditional on GDP, HDI, and athletes, more populous countries may still face a higher zero risk; Population is therefore not an effective proxy for participation.
-
-Panel~C of Figure~\ref{fig:four-panels-zinb} considers HDI (unlogged). The curve increases with HDI but lacks statistical precision ($d_{\mathrm{HDI}}=1.93$, n.s.), consistent with HDI’s influence being mediated through channels already captured by participation and related inputs.
-
-Panel~D of Figure~\ref{fig:four-panels-zinb} varies $\log(\mathrm{Athletes})$. The curve is steeply upward and matches the significant count estimate $e_{\log Ath}=1.10$: a 1\% increase in the number of participating athletes raises the expected medal count by about 1.10\%. Moreover, $\gamma_{\log Ath}<0$ (significant) shows that sending more athletes substantially reduces the structural-zero probability.
-
-Across the Figure~\ref{fig:four-panels-zinb}, the number of participating athletes is the dominant driver of post-entry medal scale and also reduces the zero risk; GDP primarily improves the entry margin; Population adds little explanatory power once participation is controlled for; and the positive effect of HDI is not robust.
-
-
-\begin{figure}[t]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{four_panels_zinb.png}
   \caption{Predicted medal counts versus key covariates under the ZINB model.
@@ -776,6 +768,17 @@ $\widehat{E}[Y]$.}
 
   \label{fig:four-panels-zinb}
 \end{figure}
+
+As shown in Panel~A of Figure~\ref{fig:four-panels-zinb}, when Population, HDI, and the number of participating athletes are held at their medians, the ceteris paribus curve with respect to $\log(\mathrm{GDP})$ is nearly flat. This accords with the count coefficient $b_{\log GDP}=-0.18$ (n.s.). By contrast, the inflation part yields $\gamma_{\log GDP}<0$ (significant), indicating that GDP mainly lowers the probability of a structural zero---an entry-margin effect rather than a scale effect.
+
+Panel~B of Figure~\ref{fig:four-panels-zinb} varies $\log(\mathrm{Population})$ while fixing the other covariates at their medians. The partial-effect curve rises only mildly, consistent with $c_{\log Pop}=0.20$ (n.s.), implying limited scale effects once participation is controlled for. The inflation estimate is positive and significant ($\gamma_{\log Pop}>0$), suggesting that, conditional on GDP, HDI, and athletes, more populous countries may still face a higher zero risk; Population is therefore not an effective proxy for participation.
+
+Panel~C of Figure~\ref{fig:four-panels-zinb} considers HDI (unlogged). The curve increases with HDI but lacks statistical precision ($d_{\mathrm{HDI}}=1.93$, n.s.), consistent with HDI’s influence being mediated through channels already captured by participation and related inputs.
+
+Panel~D of Figure~\ref{fig:four-panels-zinb} varies $\log(\mathrm{Athletes})$. The curve is steeply upward and matches the significant count estimate $e_{\log Ath}=1.10$: a 1\% increase in the number of participating athletes raises the expected medal count by about 1.10\%. Moreover, $\gamma_{\log Ath}<0$ (significant) shows that sending more athletes substantially reduces the structural-zero probability.
+
+Across the Figure~\ref{fig:four-panels-zinb}, the number of participating athletes is the dominant driver of post-entry medal scale and also reduces the zero risk; GDP primarily improves the entry margin; Population adds little explanatory power once participation is controlled for; and the positive effect of HDI is not robust.
+
 
 \subsection{Case Study of High Residual Countries}
 
@@ -802,7 +805,7 @@ Fiji & 2 & 0.4 \\
 
 \textbf{San Marino} achieved a historic breakthrough at the Tokyo 2020 Olympics, winning three medals (one silver and two bronze), despite being the smallest country ever to reach the Olympic podium. Alessandra Perilli won bronze in women’s trap shooting, the first Olympic medal in San Marino’s history, and later secured a silver medal in the mixed team trap event. These achievements highlight the impact of a single elite athlete in niche sports, which macro-level models cannot fully anticipate \citep{gasquez2014}.  
 
-\textbf{Syria}, despite facing prolonged conflict and economic hardship, secured a silver medal through weightlifter Man Asaad in the men’s 109kg+ category. This was only the second Olympic medal in Syria’s weightlifting history, underlining how the extraordinary performance of individual athletes can lead to outcomes far beyond model expectations \citep{bernard2004}.  
+\textbf{Syria}, despite facing prolonged conflict and economic hardship, secured a silver medal through weightlifter Man Asaad in the men’s 109kg+ category. This was only the second Olympic medal in Syria’s weightlifting history, underlining how the extraordinary performance of individual athletes can lead to outcomes far beyond model expectations \citep{Bernard2004}.  
 
 \textbf{Bermuda}, with fewer than 100,000 inhabitants, won its first-ever Olympic gold medal in Tokyo. Flora Duffy’s victory in the women’s triathlon not only marked a historic achievement but also demonstrated how concentrated investment in a single sport can yield outsized returns for small nations \citep{hoffmann2002}.  
 
@@ -1193,7 +1196,7 @@ In sum, future research that advances the measurement of success, broadens expla
 
 The following script shows the essential steps for estimating the Zero-Inflated Negative Binomial (ZINB) model. 
 It includes data preprocessing, model fitting, coefficient extraction, and generation of predictions. 
-For full code (including extended diagnostics and plotting scripts), please refer to the GitHub repository.\footnote{URL or DOI link here.}
+For full code (including extended diagnostics and plotting scripts), please refer to the GitHub repository.\footnote{\url{https://github.com/ZUTTER3150/Thesis-Draft-2}}
 
 \begin{lstlisting}[caption={ZINB estimation on dataset1.xlsx using Python (statsmodels)}]
 # ZINB on dataset1.xlsx 
@@ -1300,14 +1303,201 @@ print("[Saved] zinb_predictions.csv")
 
 \section{Appendix 2}
 \label{app:two}
+In addition to population, similar heterogeneity analyses were conducted by 
+GDP, HDI, and the number of athletes. As the results and procedures are 
+analogous across these dimensions, only the code for population grouping is 
+presented here for illustration. The full scripts for all four categories can 
+be accessed in the GitHub repository.\footnote{\url{https://github.com/ZUTTER3150/Thesis-Draft-2}}
 
-Some other stuff.
+The following script illustrates the computation of grouped residual statistics
+by population size. Countries are divided into quartiles based on the logarithm 
+of population size, and residuals (actual -- predicted medals) are summarized 
+within each group.
+
+\begin{lstlisting}[language=Python, caption={Grouped residuals by population size}, label={lst:pop_groups}]
+import pandas as pd
+import numpy as np
+from pathlib import Path
+
+# 1) Load predictions
+PATH = Path("zinb_predictions.csv") 
+df = pd.read_csv(PATH)
+
+# 2) Residuals and population-size groups
+df["residual"] = df["Totalmedals"] - df["E_total"]
+labels = ["Small", "Medium-Small", "Medium-Large", "Large"]
+df["Pop_group"] = pd.qcut(df["log_Pop"], q=4, labels=labels)
+
+# 3) Grouped summary statistics
+group_stats = (
+    df.groupby("Pop_group", observed=True)
+      .agg(
+          n=("Team", "count"),
+          mean_residual=("residual", "mean"),
+          median_residual=("residual", "median"),
+          sd_residual=("residual", "std"),
+          mean_std_resid=("std_resid", "mean"),
+          over_share=("residual", lambda x: np.mean(x > 0)),
+          under_share=("residual", lambda x: np.mean(x < 0)),
+      )
+      .reset_index()
+)
+
+# 4) Save results
+group_stats.to_csv("pop_groups_residuals.csv", index=False)
+group_stats.to_latex(
+    "pop_groups_residuals.tex",
+    index=False, float_format="%.3f",
+    caption="Prediction residuals by population-size groups (quartiles of log population).",
+    label="tab:pop_groups_residuals"
+)
+\end{lstlisting}
+
+\noindent\textbf{Notes:}
+\begin{itemize}
+    \item Residual = Actual $-$ Predicted; positive values indicate under-prediction.  
+    \item ``Mean Std. Residual'' measures dispersion of standardized residuals.  
+    \item ``Share Over-Perf.'' / ``Under-Perf.'' indicate the proportion of countries 
+          with positive or negative residuals in each group.  
+\end{itemize}
+
 \clearpage
 
 \section{Appendix 3}
 \label{app:one}
 
-Some stuff.
+For readability, only the core fitting and robustness-check code is shown below.  
+Data preprocessing, diagnostics, and error-handling functions are available in the 
+online repository.\footnote{\url{https://github.com/YourName/YourRepo}}  
+
+\begin{lstlisting}[language=Python, caption={Core code for subsample robustness checks of ZINB and NB2 models}, label={lst:subsample_robustness}]
+import pandas as pd
+import numpy as np
+import warnings
+from statsmodels.discrete.count_model import (
+    ZeroInflatedNegativeBinomialP, NegativeBinomialP
+)
+# 1) Define formulas
+COUNT_FORMULA = "Totalmedals ~ log_GDP + log_Pop + HDI + log_Athletes"
+INFL_FORMULA  = "~ log_GDP + log_Pop + HDI + log_Athletes"
+
+# 2) Model fitting functions
+def fit_zinb(data, label):
+    """Fit ZINB model and return summary stats"""
+    import patsy
+    y, X = patsy.dmatrices(COUNT_FORMULA, data, return_type="dataframe")
+    Z    = patsy.dmatrix(INFL_FORMULA, data, return_type="dataframe")
+
+    model = ZeroInflatedNegativeBinomialP(
+        endog=y, exog=X, exog_infl=Z,
+        inflation="logit", p=2, maxiter=400
+    )
+    res = model.fit(disp=False, method="bfgs")
+    return {"Subset": label, "Model": "ZINB", "LogLik": res.llf, "AIC": res.aic}
+
+def fit_nb2(data, label):
+    """Fit NB2 model and return summary stats"""
+    import patsy
+    y, X = patsy.dmatrices(COUNT_FORMULA, data, return_type="dataframe")
+    model = NegativeBinomialP(endog=y, exog=X, p=2, maxiter=400)
+    res = model.fit(disp=False, method="bfgs")
+    return {"Subset": label, "Model": "NB2", "LogLik": res.llf, "AIC": res.aic}
+
+# 3) Define subsamples
+subsets = [
+    ("Full sample", df.copy()),
+    ("Drop top 3 medal countries",
+        df[~df["Team"].isin(df.nlargest(3, "Totalmedals")["Team"])]),
+    ("Drop small delegations",
+        df[df["log_Athletes"] > df["log_Athletes"].quantile(0.25)]),
+    ("Drop zero-medal nations",
+        df[df["Totalmedals"] > 0]),
+]
+
+# 4) Run robustness checks
+results = []
+for label, dsub in subsets:
+    try:
+        row = fit_zinb(dsub, label)
+    except Exception:
+        row = fit_nb2(dsub, label)   # fallback if ZINB fails
+    results.append(row)
+
+summary = pd.DataFrame(results)
+print(summary)
+summary.to_latex("robustness_subsamples.tex", index=False)
+
+\end{lstlisting}
+
+\clearpage
+
+\section{Appendix 4}
+\label{app:one}
+
+
+The following script tests sensitivity of the ZINB medal model to the inclusion of
+interaction terms. Both baseline and extended specifications are fitted manually
+with explicit design matrices. For clarity, only the essential code is reproduced
+below; full diagnostics and robustness outputs are available in the GitHub 
+repository.\footnote{\url{https://github.com/ZUTTER3150/Thesis-Draft-2}}
+
+\begin{lstlisting}[language=Python, caption={ZINB model sensitivity with interaction terms}, label={lst:zinb_interaction_sensitivity}]
+import pandas as pd
+import numpy as np
+import warnings
+import statsmodels.api as sm
+from statsmodels.discrete.count_model import ZeroInflatedNegativeBinomialP
+
+# 1) Load and clean data
+df = pd.read_csv("zinb_predictions.csv")
+df = df[["Team","Totalmedals","log_GDP","log_Pop","HDI","log_Athletes"]].dropna()
+df["Totalmedals"] = df["Totalmedals"].clip(lower=0).round().astype(int)
+
+# Center predictors and build interactions
+for v in ["log_GDP","log_Pop","log_Athletes","HDI"]:
+    df[f"c_{v}"] = df[v] - df[v].mean()
+df["int_GDPxPop"] = df["c_log_GDP"] * df["c_log_Pop"]
+df["int_AthxHDI"] = df["c_log_Athletes"] * df["c_HDI"]
+
+# 2) ZINB fitting helper
+def fit_zinb_manual(data, count_vars, infl_vars, label):
+    y = data["Totalmedals"].values
+    X = sm.add_constant(data[count_vars], has_constant="add")
+    Z = sm.add_constant(data[infl_vars], has_constant="add")
+    Z = Z.rename(columns={"const":"inflate_const"})
+    model = ZeroInflatedNegativeBinomialP(endog=y, exog=X, exog_infl=Z,
+                                          inflation="logit", p=2, maxiter=500)
+    res = model.fit(disp=False, method="bfgs")
+    return res
+
+def collect_stats(label, res, Xcols):
+    mu = res.predict(which="mean")
+    rmse = float(np.sqrt(np.mean((df["Totalmedals"] - mu)**2)))
+    params = res.params
+    out = {"Model": label, "LogLik": res.llf,
+           "AIC": res.aic, "BIC": res.bic,
+           "RMSE": rmse, "alpha": params.get("alpha", np.nan)}
+    return out
+
+# 3) Specifications and runs
+base_vars = ["log_GDP","log_Pop","HDI","log_Athletes"]
+specs = [
+    ("Baseline", base_vars, base_vars),
+    ("Add GDPxPop", base_vars+["int_GDPxPop"], base_vars),
+    ("Add AthletesxHDI", base_vars+["int_AthxHDI"], base_vars),
+    ("Add both", base_vars+["int_GDPxPop","int_AthxHDI"], base_vars),
+]
+
+rows = []
+for label, cvars, ivars in specs:
+    res = fit_zinb_manual(df, cvars, ivars, label)
+    rows.append(collect_stats(label, res, cvars))
+
+cmp = pd.DataFrame(rows).sort_values("AIC")
+print(cmp)
+cmp.to_latex("zinb_interactions_comparison.tex", index=False)
+\end{lstlisting}
+
 \clearpage
 
 \end{document}
