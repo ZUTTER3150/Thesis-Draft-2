@@ -1,5 +1,8 @@
-This repository contains the supplementary materials for the dissertation “Olympic Medal Prediction under a Zero-Inflated Model: Quantitative Analysis of Socioeconomic Development and Demographic Factors”.
-It includes the datasets, preprocessing scripts, modeling code, figures, and tables referenced in the thesis.
+This repository contains the supplementary materials for the dissertation *“Olympic Medal Prediction under a Zero-Inflated Model: Quantitative Analysis of Socioeconomic Development and Demographic Factors”*.  
+It includes the datasets, preprocessing scripts, modeling code, figures, and tables referenced in the thesis.  
+
+## 📂 Repository Structure
+```plaintext
 Thesis-Draft-2/
 ├─ README.md                 # Project overview (this file)
 ├─ data/                     # Raw and processed datasets
@@ -40,7 +43,7 @@ Thesis-Draft-2/
 │   ├─ zinb_specs_irr_wide.xlsx         # Incidence Rate Ratios (wide format)
 │   ├─ zinb_alternative_specs_comparison.xlsx   # ZINB with alternative specifications
 │   ├─ zinb_interactions_comparison.xlsx        # ZINB interaction terms results
-│   └─ univariate_descriptive_stats_with_medals.xlsx   # Descriptive statistics with medal counts
+│   └─ univariate_descriptive_stats_with_medals.xlsx   # Descriptive stats with medal counts
 ├─ figures/                  # Figures used in the dissertation
 ├─ tables/                   # Statistical output tables (LaTeX/CSV/Excel format)
--
+
